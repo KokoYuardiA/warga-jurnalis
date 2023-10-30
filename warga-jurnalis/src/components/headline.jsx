@@ -15,9 +15,9 @@ const HeadlineNews = () => {
   }, [apiKey]);
 
   return (
-    <div>
+    <div className='px-16'>
       <h2 className="text-2xl font-bold mb-4">Headline News - Indonesia</h2>
-      <div className="flex overflow-x-auto gap-4">
+      <div className="flex overflow-x-auto gap-2">
         {news.map((item, index) => (
           <NewsCard
             key={index}

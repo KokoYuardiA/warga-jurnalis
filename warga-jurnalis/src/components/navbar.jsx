@@ -11,7 +11,7 @@ const Navbar = () => {
     <nav className="bg-white p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <div className="lg:flex lg:items-center space-x-6">
-          <ul className="lg:flex space-x-6">
+          <ul className={`lg:flex space-x-6 ${isMenuOpen ? 'block' : 'hidden'}`}>
             <li>
               <a
                 href="#home"
@@ -83,7 +83,7 @@ const Navbar = () => {
           </button>
           <a
             href="#signup"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 hidden lg:block"
           >
             Sign Up
           </a>

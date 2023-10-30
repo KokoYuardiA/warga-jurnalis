@@ -13,13 +13,13 @@ const NewsCard = ({ title, published, image_url, category }) => {
           backgroundImage: `url(${image_url || defaultImageUrl})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          height: '200px',
-          width: '200px' // Sesuaikan tinggi sesuai kebutuhan
+          height: '300px',
+          width: '300px' // Sesuaikan tinggi sesuai kebutuhan
         }}
       >
         <div className="absolute inset-0 bg-black opacity-50 rounded-t-lg" />
         <div className="absolute inset-0 flex flex-col justify-end p-4">
-          <h3 className="text-lg font-semibold text-white">{title}</h3>
+          <h3 className="text-lg font-semibold text-white overflow-ellipsis whitespace-nowrap overflow-hidden">{title}</h3>
           <p className="text-sm text-gray-300">{published} | {category}</p>
         </div>
       </div>
