@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,18 +82,12 @@ const Navbar = () => {
               <i className="fas fa-bars"></i>
             )}
           </button>
-          <a
-            href="#signup"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 hidden lg:block"
-          >
+          <Link to="/signup" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 hidden lg:block">
             Sign Up
-          </a>
-          <a
-            href="#login"
-            className="text-black hover:text-gray-500 transition duration-300"
-          >
+          </Link>
+          <Link to="/login" className="text-black hover:text-gray-500 transition duration-300">
             Log In
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
