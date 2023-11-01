@@ -23,9 +23,9 @@ const HeadlineNews = ({ newsData }) => {
   };
 
   return (
-    <div className="p-16">
+    <div className="p-16 bg-slate-400">
       <h2 className="text-2xl font-bold mb-4">Headline News - Indonesia</h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 rounded">
+      <div className="grid grid-cols-1 gap-4 justify-items-center md:grid-cols-3 rounded">
         {newsData.slice(startIndex, endIndex).map((news, index) => (
           <Link key={index} to={`/news/${news.article_id}`}>
             <NewsCard

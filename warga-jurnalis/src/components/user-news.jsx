@@ -13,7 +13,7 @@ const UserNews = ({ newsData }) => {
   const reversedNewsData = [...newsData].reverse();
 
   return (
-    <div className="px-16">
+    <div className="p-16 bg-slate-300">
       <h2 className="text-2xl font-bold mb-4">People's News</h2>
       <div className="flex flex-col">
         {reversedNewsData.slice(0, displayedNews).map((news, index) => (

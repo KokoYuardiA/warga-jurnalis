@@ -4,7 +4,7 @@ const NewsCard = ({ title, pubDate, image_url, category }) => {
   const defaultImageUrl = 'https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg';
 
   return (
-    <div className="w-full flex bg-white p-4 mb-4 shadow-md">
+    <div className="w-full transition-transform transform hover:scale-105 flex bg-white rounded-xl p-4 mb-4 shadow-md">
       <div
         className="w-1/3 h-48"
         style={{

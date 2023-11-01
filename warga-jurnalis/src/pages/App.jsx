@@ -59,7 +59,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className='bg-gray'>
         <Header />
         <Navbar />
         <HeadlineNews newsData={headlineNews} />
