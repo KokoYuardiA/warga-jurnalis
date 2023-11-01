@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import NewsCard from './reusable/card-news';
 import { Link } from 'react-router-dom';
-
+import Button from './reusable/button'
+ 
 const HeadlineNews = ({ newsData }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const cardsPerPage = window.innerWidth > 768 ? 3 : 1;
@@ -38,20 +39,14 @@ const HeadlineNews = ({ newsData }) => {
         ))}
       </div>
       <div className="mt-4 flex justify-between">
-        <button
+        <Button 
+          label="Previous"
           onClick={handlePrevClick}
-          disabled={currentPage === 0}
-          className="px-2 py-1 bg-gray-200 rounded-md"
-        >
-          Previous
-        </button>
-        <button
+          disabled={currentPage === 0} />
+        <Button 
+          label="Next"
           onClick={handleNextClick}
-          disabled={endIndex >= newsData.length}
-          className="px-2 py-1 bg-gray-200 rounded-md"
-        >
-          Next
-        </button>
+          disabled={endIndex >= newsData.length} />
       </div>
     </div>
   );

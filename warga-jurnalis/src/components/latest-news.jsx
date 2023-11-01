@@ -12,7 +12,7 @@ const LatestNews = ({ newsData }) => {
   };
 
   return (
-    <div className="px-16">
+    <div className="p-16">
       <h2 className="text-2xl font-bold mb-4">Latest News</h2>
       <div className="flex flex-col">
         {newsData.slice(0, displayedNews).map((news, index) => (
