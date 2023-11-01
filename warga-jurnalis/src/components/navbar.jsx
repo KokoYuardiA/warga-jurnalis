@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../utils/api/auth/api';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
+  const { logout } = useAuth();
 
   useEffect(() => {
     // Cek status autentikasi saat komponen dimuat
-    const isLoggedIn = localStorage.getItem('authenticated') === 'true';
+    const isLoggedIn = localStorage.getItem('auth') === 'true';
     setAuthenticated(true);
   }, []);
 
@@ -17,7 +19,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     // Hapus status autentikasi dan arahkan pengguna ke halaman login
-    localStorage.removeItem('authenticated');
+    logout();
     setAuthenticated(false);
   };
 

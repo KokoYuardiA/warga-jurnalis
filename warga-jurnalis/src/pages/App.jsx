@@ -8,6 +8,7 @@ import UserNews from '../components/user-news'
 
 function App() {
   const [news, setNews] = useState([]);
+  const [userNews, setUserNews] = useState([]);
   const [headlineNews, setHeadlineNews] = useState([])
   const apiKey = 'pub_31678e4ba0925e8206ac778a4f7f1f02922cb';
   const headlineApiKey = 'pub_31678e4ba0925e8206ac778a4f7f1f02922cb';
@@ -24,6 +25,7 @@ function App() {
   //     fetch(`https://newsdata.io/api/1/news?country=id&category=top&apikey=${headlineApiKey}`)
   //     .then((response) => response.json())
   //     .then((data) => {
+  //       console.log(data);
   //       setHeadlineNews(data.results);
   //     });
   // }, [apiKey, headlineApiKey]);
@@ -32,7 +34,8 @@ function App() {
     fetch('https://65411d03f0b8287df1fdd439.mockapi.io/api/1/news')
       .then((res) => res.json())
       .then((result) => {
-        setNews(result);
+        console.log(result);
+        setUserNews(result);
       });
   }, []);
 
@@ -45,13 +48,22 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    fetch('https://65411d03f0b8287df1fdd439.mockapi.io/api/1/news')
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        setNews(result);
+      });
+  }, []);
+
   return (
     <>
       <div>
         <Header />
         <Navbar />
         <HeadlineNews newsData={headlineNews} />
-        <UserNews newsData= {news}/>
+        <UserNews newsData= {userNews}/>
         <LatestNews newsData= {news}/>
       </div>
     </>

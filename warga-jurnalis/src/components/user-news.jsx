@@ -10,12 +10,13 @@ const UserNews = ({ newsData }) => {
   const loadMoreNews = () => {
     setDisplayedNews(displayedNews + newsPerLoad);
   };
+  const reversedNewsData = [...newsData].reverse();
 
   return (
     <div className="px-16">
       <h2 className="text-2xl font-bold mb-4">People's News</h2>
       <div className="flex flex-col">
-        {newsData.slice(0, displayedNews).map((news, index) => (
+        {reversedNewsData.slice(0, displayedNews).map((news, index) => (
           <Link key={index} to={`/news/${news.article_id}`}>
             <NewsCard
               title={news.title}

@@ -6,7 +6,7 @@ import Button from '../components/reusable/button';
 import Header from '../components/header';
 
 const NewsForm = () => {
-  const isAuthenticated = useAuth();
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: '',
