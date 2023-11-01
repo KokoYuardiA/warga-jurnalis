@@ -1,35 +1,161 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../utils/api/auth/api';
+import { Input, TextArea, Select } from '../components/reusable/input';
+import Button from '../components/reusable/button'; 
+import Header from '../components/header';
 
 const NewsForm = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    title: '',
+    content: '',
+    pubDate: '',
+    image_url: '',
+    category: '',
+  });
+
+  const [formErrors, setFormErrors] = useState({
+    title: '',
+    content: '',
+    image_url: '',
+    category: '',
+  });
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login'); // Jika pengguna belum terautentikasi, arahkan ke halaman login
+    }
+  }, [isAuthenticated, navigate]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (formData.title.trim() === '') {
+      errors.title = 'Judul tidak boleh kosong';
+    }
+
+    if (formData.content.trim() === '') {
+      errors.content = 'Konten tidak boleh kosong';
+    }
+
+    if (formData.image_url.trim() === '') {
+      errors.image_url = 'URL Gambar tidak boleh kosong';
+    }
+
+    if (formData.category.trim() === '') {
+      errors.category = 'Kategori tidak boleh kosong';
+    }
+
+    setFormErrors(errors);
+
+    return Object.keys(errors).length === 0;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Lakukan pengiriman data berita ke API atau penyimpanan data sesuai kebutuhan
+
+    if (!validateForm()) {
+      return;
+    }
+
+    // Buat objek data berita yang akan dikirim ke mock API
+    const newsData = {
+      title: formData.title,
+      content: formData.content,
+      pubDate: new Date().toISOString(),
+      image_url: formData.image_url,
+      category: formData.category,
+    };
+
+    // Kirim data berita ke mock API
+    fetch('https://65411d03f0b8287df1fdd439.mockapi.io/api/1/news', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newsData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Tambahkan logika untuk menangani respons API jika diperlukan
+        console.log('Berita berhasil ditambahkan', data);
+        alert('Berita berhasil ditambahkan'); // Tampilkan alert
+      })
+      .catch((error) => {
+        // Tambahkan logika untuk menangani kesalahan jika diperlukan
+        console.error('Terjadi kesalahan', error);
+        alert('Terjadi kesalahan');
+      });
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div>
+        <Header />
+        <div className='p-32'>
+          <h2 className="text-2xl font-bold mb-4 pt-6">Anda harus login terlebih dahulu</h2>
+        </div>
+      </div>
+    );
   };
 
   return (
     <div>
-      <h2>Add News</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Title</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Content</label>
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <Header />
+      <div className='p-14'>
+        <Link to="/">
+          <Button label="Back" />
+        </Link>
+        <h2 className="text-2xl font-bold mb-4 pt-6">Tambah Berita</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Input
+              label="Judul"
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+            />
+            {formErrors.title && <div className="text-red-500">{formErrors.title}</div>}
+
+            <Select
+              label="Kategori"
+              options={["Tech", "Social", "Entertainment"]}
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+            />
+            {formErrors.category && <div className="text-red-500">{formErrors.category}</div>}
+
+            <Input
+              label="URL Gambar"
+              type="text"
+              name="image_url"
+              value={formData.image_url}
+              onChange={handleChange}
+            />
+            {formErrors.image_url && <div className="text-red-500">{formErrors.image_url}</div>}
+
+            <TextArea
+              label="Konten"
+              name="content"
+              value={formData.content}
+              onChange={handleChange}
+            />
+            {formErrors.content && <div className="text-red-500">{formErrors.content}</div>}
+
+            <Button label="Simpan" type="submit"/>
+          </div>
+        </form>
+        
+      </div>
     </div>
   );
 };

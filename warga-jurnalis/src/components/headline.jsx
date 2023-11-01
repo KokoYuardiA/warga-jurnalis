@@ -27,14 +27,14 @@ const HeadlineNews = ({ newsData }) => {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 rounded">
         {newsData.slice(startIndex, endIndex).map((headlineNews, index) => (
           <Link key={index} to={`/news/${headlineNews.article_id}`}>
-          <NewsCard
-            key={index}
-            title={headlineNews.title}
-            pubDate={headlineNews.pubDate}
-            image_url={headlineNews.image_url}
-            category={headlineNews.category}
-          />
-        </Link>
+            <NewsCard
+              key={index}
+              title={headlineNews.title}
+              pubDate={headlineNews.pubDate}
+              image_url={headlineNews.image_url}
+              category={headlineNews.category}
+            />
+          </Link>
         ))}
       </div>
       <div className="mt-4 flex justify-between">

@@ -1,12 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <header className="bg-blue-500 text-white py-4">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-2xl font-bold">
-          Warga Jurnalis
-        </div>
+        <Link to={"/"} className='text-lg text-white'>Warga Jurnalis</Link>
         <div>
           <a
             href="https://reactjs.org/"

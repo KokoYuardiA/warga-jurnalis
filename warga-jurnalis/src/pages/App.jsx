@@ -4,6 +4,7 @@ import Navbar from '../components/navbar'
 import Header from '../components/header'
 import HeadlineNews from '../components/headline'
 import LatestNews from '../components/latest-news'
+import UserNews from '../components/user-news'
 
 function App() {
   const [news, setNews] = useState([]);
@@ -50,6 +51,7 @@ function App() {
         <Header />
         <Navbar />
         <HeadlineNews newsData={headlineNews} />
+        <UserNews newsData= {news}/>
         <LatestNews newsData= {news}/>
       </div>
     </>

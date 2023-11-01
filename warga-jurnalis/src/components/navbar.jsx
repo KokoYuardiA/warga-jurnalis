@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../utils/api/auth/api';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -82,12 +88,25 @@ const Navbar = () => {
               <i className="fas fa-bars"></i>
             )}
           </button>
-          <Link to="/signup" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 hidden lg:block">
-            Sign Up
-          </Link>
-          <Link to="/login" className="text-black hover:text-gray-500 transition duration-300">
-            Log In
-          </Link>
+          {isAuthenticated ? (
+            <>
+              <Link to="/news-form" className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">
+                Add News
+              </Link>
+              <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300">
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/signup" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">
+                Sign Up
+              </Link>
+              <Link to="/login" className="text-black hover:text-gray-500 transition duration-300">
+                Log In
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>

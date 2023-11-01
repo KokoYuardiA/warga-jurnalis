@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/header';
 import Navbar from '../components/navbar';
 import NewsDetailCard from '../components/news-detail-card';
+import { Link } from 'react-router-dom';
 
 const NewsDetail = () => {
   const { id } = useParams();
