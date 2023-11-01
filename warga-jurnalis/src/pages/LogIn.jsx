@@ -14,16 +14,28 @@ const Login = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-
-    // Validasi email dan password
-    if (!email || !password) {
-      setError('Email dan password harus diisi');
-      return;
-    }
-    login(email, password);
-    navigate('/news-form');
-    
+    // Kirim permintaan ke API pengguna
+    fetch('https://65411d03f0b8287df1fdd439.mockapi.io/api/1/users')
+      .then((response) => response.json())
+      .then((data) => {
+        const user = data.find((user) => user.email === email && user.password === password);
+  
+        if (user) {
+          // Jika pengguna ditemukan, set autentikasi menggunakan context
+          login(email, password);
+          // Arahkan ke halaman News Form
+          navigate('/news-form');
+        } else {
+          // Jika pengguna tidak ditemukan, tampilkan pesan kesalahan
+          setError('Email atau password salah');
+        }
+      })
+      .catch((error) => {
+        // Tambahkan logika untuk menangani kesalahan jika diperlukan
+        console.error('Terjadi kesalahan', error);
+      });
   };
+  
 
   return (
     <div>

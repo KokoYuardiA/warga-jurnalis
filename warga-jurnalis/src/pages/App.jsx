@@ -9,8 +9,8 @@ import UserNews from '../components/user-news'
 function App() {
   const [news, setNews] = useState([]);
   const [headlineNews, setHeadlineNews] = useState([])
-  const apiKey = 'pub_31678e4ba0925e8206ac778a4f7f1f02922cb'; // Ganti dengan kunci API Anda
-  const headlineApiKey = 'pub_31678e4ba0925e8206ac778a4f7f1f02922cb'; // Ganti dengan kunci API Anda untuk kategori top
+  const apiKey = 'pub_31678e4ba0925e8206ac778a4f7f1f02922cb';
+  const headlineApiKey = 'pub_31678e4ba0925e8206ac778a4f7f1f02922cb';
 
 
   // useEffect(() => {
@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch('https://65411d03f0b8287df1fdd439.mockapi.io/api/1/news')
+    fetch('https://65411d03f0b8287df1fdd439.mockapi.io/api/1/news?category=top')
       .then((res) => res.json())
       .then((result) => {
         console.log(result);

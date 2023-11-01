@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../utils/api/auth/api';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isAuthenticated, logout } = useAuth();
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Cek status autentikasi saat komponen dimuat
+    const isLoggedIn = localStorage.getItem('authenticated') === 'true';
+    setAuthenticated(isLoggedIn);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const handleLogout = () => {
-    logout();
+    // Hapus status autentikasi dan arahkan pengguna ke halaman login
+    localStorage.removeItem('authenticated');
+    setAuthenticated(false);
   };
 
   return (
@@ -88,7 +95,7 @@ const Navbar = () => {
               <i className="fas fa-bars"></i>
             )}
           </button>
-          {isAuthenticated ? (
+          {authenticated ? (
             <>
               <Link to="/news-form" className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">
                 Add News

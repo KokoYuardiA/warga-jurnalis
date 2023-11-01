@@ -25,7 +25,7 @@ const NewsForm = () => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/login'); // Jika pengguna belum terautentikasi, arahkan ke halaman login
+      navigate('/login'); // Redirect to the login page if the user is not authenticated
     }
   }, [isAuthenticated, navigate]);
 
@@ -93,17 +93,6 @@ const NewsForm = () => {
         console.error('Terjadi kesalahan', error);
         alert('Terjadi kesalahan');
       });
-  };
-
-  if (!isAuthenticated) {
-    return (
-      <div>
-        <Header />
-        <div className='p-32'>
-          <h2 className="text-2xl font-bold mb-4 pt-6">Anda harus login terlebih dahulu</h2>
-        </div>
-      </div>
-    );
   };
 
   return (
