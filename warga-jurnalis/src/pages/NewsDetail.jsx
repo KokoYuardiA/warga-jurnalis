@@ -6,8 +6,10 @@ import NewsDetailCard from '../components/news-detail-card';
 import { Link } from 'react-router-dom';
 
 const NewsDetail = () => {
+  const headlineApiKey = 'pub_31678e4ba0925e8206ac778a4f7f1f02922cb';
   const { id } = useParams();
   const [newsDetails, setNewsDetails] = useState(null);
+  const [additionalData, setAdditionalData] = useState(null);
 
   useEffect(() => {
     fetch(`https://65411d03f0b8287df1fdd439.mockapi.io/api/1/news?article_id=${id}`)
@@ -20,6 +22,14 @@ const NewsDetail = () => {
             setNewsDetails(data[0]);
         }
       });
+
+      fetch(`https://newsdata.io/api/1/news?country=id&category=top&apikey=${headlineApiKey}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setAdditionalData(data.results);
+      });
+    
   }, [id]);
 
   return (
@@ -38,6 +48,7 @@ const NewsDetail = () => {
         ) : (
           <p>Loading...</p>
         )}
+        
       </div>
     </div>
   );

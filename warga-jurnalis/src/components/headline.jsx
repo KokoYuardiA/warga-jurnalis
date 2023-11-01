@@ -26,14 +26,13 @@ const HeadlineNews = ({ newsData }) => {
     <div className="p-16">
       <h2 className="text-2xl font-bold mb-4">Headline News - Indonesia</h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 rounded">
-        {newsData.slice(startIndex, endIndex).map((headlineNews, index) => (
-          <Link key={index} to={`/news/${headlineNews.article_id}`}>
+        {newsData.slice(startIndex, endIndex).map((news, index) => (
+          <Link key={index} to={`/news/${news.article_id}`}>
             <NewsCard
-              key={index}
-              title={headlineNews.title}
-              pubDate={headlineNews.pubDate}
-              image_url={headlineNews.image_url}
-              category={headlineNews.category}
+              title={news.title}
+              pubDate={news.pubDate}
+              image_url={news.image_url}
+              category={news.category}
             />
           </Link>
         ))}

@@ -1,33 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../utils/api/auth/api';
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
-  const { logout } = useAuth();
-
-  useEffect(() => {
-    // Cek status autentikasi saat komponen dimuat
-    const isLoggedIn = localStorage.getItem('auth') === 'true';
-    setAuthenticated(true);
-  }, []);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const { auth, logout } = useAuth();
 
   const handleLogout = () => {
-    // Hapus status autentikasi dan arahkan pengguna ke halaman login
+    // Logout dan arahkan pengguna ke halaman login
     logout();
-    setAuthenticated(false);
   };
 
   return (
     <nav className="bg-white p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <div className="lg:flex lg:items-center space-x-6">
-          <ul className={`lg:flex space-x-6 ${isMenuOpen ? 'block' : 'hidden'}`}>
+          <ul className="lg:flex space-x-6">
             <li>
               <a
                 href="#home"
@@ -87,17 +74,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="lg:flex lg:items-center space-x-6">
-          <button
-            onClick={toggleMenu}
-            className="lg:hidden text-black hover:text-gray-500 focus:text-gray-500 focus:outline-none"
-          >
-            {isMenuOpen ? (
-              <i className="fas fa-times"></i>
-            ) : (
-              <i className="fas fa-bars"></i>
-            )}
-          </button>
-          {authenticated ? (
+          {auth ? (
             <>
               <Link to="/news-form" className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">
                 Add News
@@ -111,7 +88,7 @@ const Navbar = () => {
               <Link to="/signup" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">
                 Sign Up
               </Link>
-              <Link to="/login" className="text-black hover:text-gray-500 transition duration-300">
+              <Link to="/login" className="text-black hover-text-gray-500 transition duration-300">
                 Log In
               </Link>
             </>
