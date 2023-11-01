@@ -8,7 +8,7 @@ const Navbar = () => {
   useEffect(() => {
     // Cek status autentikasi saat komponen dimuat
     const isLoggedIn = localStorage.getItem('authenticated') === 'true';
-    setAuthenticated(isLoggedIn);
+    setAuthenticated(true);
   }, []);
 
   const toggleMenu = () => {
