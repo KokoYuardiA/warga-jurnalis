@@ -6,7 +6,7 @@ function Input(props) {
   return (
     <div className="flex flex-col mb-4 w-full">
       <label
-        className="text-black dark:text-white tracking-wider mb-3"
+        className="text-black tracking-wider mb-3"
         htmlFor={id}
       >
         {label}
@@ -40,7 +40,7 @@ function TextArea(props) {
   return (
     <div className="flex flex-col mb-4">
       <label
-        className="text-black dark:text-white tracking-wider mb-3"
+        className="text-black tracking-wider mb-3"
         htmlFor={id}
       >
         {label}
@@ -70,7 +70,7 @@ function Select(props) {
   return (
     <div className="flex flex-col mb-4">
       <label
-        className="text-black dark:text-white tracking-wider mb-3"
+        className="text-black tracking-wider mb-3"
         htmlFor={id}
       >
         {label}

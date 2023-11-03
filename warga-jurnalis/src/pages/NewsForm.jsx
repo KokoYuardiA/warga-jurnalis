@@ -96,13 +96,13 @@ const NewsForm = () => {
   };
 
   return (
-    <div>
+    <div className='bg-white'>
       <Header />
       <div className='p-14'>
         <Link to="/">
           <Button label="Back" />
         </Link>
-        <h2 className="text-2xl font-bold mb-4 pt-6">Tambah Berita</h2>
+        <h2 className="text-2xl text-black font-bold mb-4 pt-6">Tambah Berita</h2>
         <form onSubmit={handleSubmit}>
           <div>
             <Input

@@ -33,7 +33,7 @@ const NewsDetail = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className='bg-white'>
       <Header />
       <Navbar />
       <div>

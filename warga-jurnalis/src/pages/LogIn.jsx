@@ -38,13 +38,13 @@ const Login = () => {
   
 
   return (
-    <div>
+    <div className='bg-white h-screen'>
       <Header />
-      <div className='p-32'>
+      <div className='p-28'>
         <Link to={`/`}>
           <Button label="Back" />
         </Link>
-        <h2 className="text-2xl font-bold mb-4">Login</h2>
+        <h2 className="text-2xl text-black font-bold mb-4">Login</h2>
         <form>
           <Input
             label="Email"

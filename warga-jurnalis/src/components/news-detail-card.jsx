@@ -6,7 +6,7 @@ const NewsDetailCard = ({ title, pubDate, image_url, content, category }) => {
   return (
     <div className="px-72 py-6 border rounded-lg shadow-lg">
       <div className='border p-4'>
-        <h2 className="text-2xl font-semibold mb-2">{title}</h2>
+        <h2 className="text-2xl text-black font-semibold mb-2">{title}</h2>
         <p className="text-gray-600 mb-2">{pubDate} | {category}</p>
         <div
             className="p-16 border rounded-lg h-80"

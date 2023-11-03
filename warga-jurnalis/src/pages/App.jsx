@@ -10,8 +10,6 @@ function App() {
   const [news, setNews] = useState([]);
   const [userNews, setUserNews] = useState([]);
   const [headlineNews, setHeadlineNews] = useState([])
-  const apiKey = 'pub_31678e4ba0925e8206ac778a4f7f1f02922cb';
-  const headlineApiKey = 'pub_31678e4ba0925e8206ac778a4f7f1f02922cb';
 
 
   // useEffect(() => {
