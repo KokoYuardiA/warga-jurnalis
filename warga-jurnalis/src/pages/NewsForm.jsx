@@ -6,7 +6,7 @@ import Button from '../components/reusable/button';
 import Header from '../components/header';
 
 const NewsForm = () => {
-  const isAuthenticated = useAuth();
+  const { auth } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: '',
@@ -24,10 +24,10 @@ const NewsForm = () => {
   });
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (auth !== 'authenticated') {
       navigate('/login'); // Redirect to the login page if the user is not authenticated
     }
-  }, [isAuthenticated, navigate]);
+  }, [auth, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
