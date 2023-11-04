@@ -17,7 +17,7 @@ const LatestNews = ({ newsData}) => {
       <h2 className="text-2xl font-bold mb-4">Latest News</h2>
       <div className="flex flex-col">
         {newsData.slice(0, displayedNews).map((news, index) => (
-          <Link key={index} to={`/news/${news.article_id}`}>
+          <Link key={index} to={`/news/${news.id}`}>
           <NewsCard
             title={news.title}
             pubDate={news.pubDate}

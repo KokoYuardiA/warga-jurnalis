@@ -5,6 +5,7 @@ import NewsForm from "../pages/NewsForm";
 import Login from "../pages/LogIn";
 import Register from "../pages/SignUp";
 import NewsDetail from "../pages/NewsDetail";
+import NewsEditForm from "../pages/NewsEditForm";
 
 
 export default function Router() {
@@ -28,6 +29,10 @@ export default function Router() {
         {
             path: '/news/:id',
             element: <NewsDetail />
+        },
+        {
+            path: '/news/:id/edit',
+            element: <NewsEditForm />
         },
     ])
 
