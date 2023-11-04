@@ -23,7 +23,7 @@ const NewsDetail = () => {
   }, [id]);
 
   return (
-    <div className='bg-white'>
+    <div className='bg-white h-screen'>
       <Header />
       <Navbar />
       <div>
