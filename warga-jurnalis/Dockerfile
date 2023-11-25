@@ -1,11 +1,13 @@
 FROM node:18-alpine
 
-WORKDIR /warga-jurnalis/
+WORKDIR /app
 
-COPY public/ /warga-jurnalis/public
-COPY src/ /warga-jurnalis/src
-COPY package.json /warga-jurnalis/
+COPY package.json .
 
 RUN npm install
 
-CMD ["npm", "run dev"]
+COPY . .
+
+RUN npm run build
+
+CMD [ "npm", "run", "preview" ]
